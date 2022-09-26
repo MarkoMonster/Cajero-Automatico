@@ -1,0 +1,12 @@
+.bg-principal{
+    background: url('../img/bg-main.jpg') no-repeat;
+    background-size: cover;
+}
+.formulario{
+    box-shadow: 0 0 18px rgba(37, 28, 106,.1);
+    background-color: rgba(0,0,0,.32);
+    backdrop-filter: blur(15px);
+}
+.devf{
+    color: #9272ff;
+}
