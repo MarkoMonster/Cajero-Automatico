@@ -1,6 +1,7 @@
 .bg-principal{
     background: url('../img/bg-main.jpg') no-repeat;
     background-size: cover;
+    height: 100vh;
 }
 .formulario{
     box-shadow: 0 0 18px rgba(37, 28, 106,.1);
