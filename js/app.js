@@ -2,7 +2,7 @@ let cuentas = [
     {nombre: 'Mali', password: '1234', saldo: 280, img: '../img/perfil-mali.jpg' },
     {nombre: 'Maui', password: '5678', saldo: 550, img: '../img/perfil-maui.jpg' },
     {nombre: 'Gera', password: '4321', saldo: 150, img: '../img/perfil-gera.jpg' },
-    {nombre: 'Monster', password: '1234', saldo: 11, img: '../img/perfil-gera.jpg' }
+    {nombre: 'Monster', password: '1234', saldo: 50, img: '../img/perfil-gera.jpg' }
 ]
 const saldoMax = 990;
 const saldoMin = 10;
@@ -27,25 +27,37 @@ function login(){
     let inputUsuario = document.getElementById('input-usuario').value;
     let password = document.getElementById('input-password').value;
     console.log(cuentas.length);
-    for(let i = 0; i < cuentas.length; i++){ // uso de for porque forEach no tiene un break
-        usuario = cuentas[i];
-        console.log(usuario.nombre , inputUsuario);
-        if(usuario.nombre == inputUsuario){
-            console.log('Usuario correcto');
 
-            if(usuario.password == password){
-                console.log('Password correcto');
-                usuarioLogueado = usuario;
+    // buscar usuarios que coincida el name usando filter
+    let usuariosEncontrados = cuentas.filter(cuenta => cuenta.nombre == inputUsuario);
+    // si encontró usuarios con ese nombre
+    if(usuariosEncontrados.length > 0){
+        // buscar entre esos usuario los que coincidan el password
+        let usuariosCorrectos = usuariosEncontrados.filter(usuario => usuario.password == password);
+        // si encontró con password correcto
+        if(usuariosCorrectos.length > 0){
+            // si solo existe un solo registro correcto
+            if(usuariosCorrectos.length == 1){
+                // obtener el usuario correcto y asignarlo a usuarioLogueado
+                usuarioLogueado = usuariosCorrectos[0];
                 document.getElementById('login').classList.add('d-none');
                 document.getElementById("interfaz").classList.remove('d-none');
                 document.getElementById('home').classList.remove('d-none');
                 let spanNombreUsuario = document.getElementById('nombre-usuario');
                 spanNombreUsuario.innerHTML = usuarioLogueado.nombre;
-                break;
             }
-        } else {
-            console.log('usuario incorrecto');
+            // si hubo más de un registro válido
+            else{
+                alert('Existe más de un usuario coincidente');
+            }
         }
+        else{
+            alert('No es la contraseña correcta')
+        }
+    }
+    // si no existe el usuario
+    else{
+        alert('No se encontró el usuario usuario');
     }
 }
 
@@ -91,6 +103,7 @@ function realizarDeposito(){
         } else {
             usuarioLogueado.saldo = nuevoSaldo;
             console.log('Deposito realizado con éxito');
+            
             actualizarSesion ()
             regresar();
         }

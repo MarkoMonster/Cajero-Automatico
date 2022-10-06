@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-MX">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -131,7 +131,7 @@
                             </fieldset>
                             <div class="d-flex justify-content-end">
                                 <button type="button" id="cancelar-deposito" class="btn btn-lg btn-outline-secondary me-3">Cancelar</button>
-                                <button type="button" id="aceptar-deposito" class="btn btn-lg btn-secondary text-white"> Aceptar</button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Aceptar</button>
                             </div>
                         </div>
                     </div>
@@ -159,7 +159,8 @@
                             </fieldset>
                             <div class="d-flex justify-content-end">
                                 <button type="button" id="cancelar-retiro" class="btn btn-lg btn-outline-secondary me-3">Cancelar</button>
-                                <button type="button" id="aceptar-retiro" class="btn btn-lg btn-secondary text-white"> Aceptar</button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModalRetiro">Aceptar</button>
+                                <!-- <button type="button"  class="btn btn-lg btn-secondary text-white"> Aceptar</button> -->
                             </div>
                         </div>
                     </div>
@@ -174,21 +175,47 @@
     
     
 
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-          <div class="toast-header">
-            <img src="..." class="rounded me-2" alt="...">
-            <strong class="me-auto">Bootstrap</strong>
-            <small>11 mins ago</small>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-          </div>
-          <div class="toast-body">
-            Hello, world! This is a toast message.
-          </div>
+
+  
+  <!-- Modal Depósito -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center d-flex justify-content-center flex-column">
+                <span class="animacion mx-auto" >
+                    <img class="rebote" src="./img/check2.svg" alt="">
+                </span>
+                <h3 class="text-center">Depósito creado con éxito</h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="aceptar-deposito" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+            </div>
         </div>
     </div>
+</div>
 
-    <script src="./js/bootstrap.js"></script>
-    <script src="./js/app.js"></script>
+<!-- Modal Retiro -->
+<div class="modal fade" id="myModalRetiro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center d-flex justify-content-center flex-column">
+                <span class="animacion mx-auto" >
+                    <img class="rebote" src="./img/check2.svg" alt="">
+                </span>
+                <h3 class="text-center">Retiro realizado con éxito</h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="aceptar-retiro" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="./js/bootstrap.js"></script>
+<script src="./js/app.js"></script>
+
+</script>
 </body>
 </html>
