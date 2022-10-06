@@ -2,7 +2,7 @@ let cuentas = [
     {nombre: 'Mali', password: '1234', saldo: 280, img: '../img/perfil-mali.jpg' },
     {nombre: 'Maui', password: '5678', saldo: 550, img: '../img/perfil-maui.jpg' },
     {nombre: 'Gera', password: '4321', saldo: 150, img: '../img/perfil-gera.jpg' },
-    {nombre: 'Monster', password: '1234', saldo: 50, img: '../img/perfil-gera.jpg' }
+    {nombre: 'Marco', password: '1111', saldo: 50, img: '../img/perfil-monster.jpg' }
 ]
 const saldoMax = 990;
 const saldoMin = 10;
@@ -45,6 +45,8 @@ function login(){
                 document.getElementById('home').classList.remove('d-none');
                 let spanNombreUsuario = document.getElementById('nombre-usuario');
                 spanNombreUsuario.innerHTML = usuarioLogueado.nombre;
+                let foto = document.getElementById('foto-perfil');
+                foto.src = usuarioLogueado.img;
             }
             // si hubo más de un registro válido
             else{
@@ -57,7 +59,7 @@ function login(){
     }
     // si no existe el usuario
     else{
-        alert('No se encontró el usuario usuario');
+        alert('No se encontró el usuario ');
     }
 }
 
@@ -94,15 +96,15 @@ function realizarDeposito(){
     let montoAgregado = parseInt(document.getElementById('input-deposito').value);
     console.log(montoAgregado);
     if(montoAgregado <= 1 || isNaN(montoAgregado)){
-        console.log('Monto incorrecto');
+        alert('Monto incorrecto');
     } else {
         let nuevoSaldo = parseInt(usuarioLogueado.saldo) + parseInt(montoAgregado);
         console.log(nuevoSaldo);
         if(nuevoSaldo > saldoMax){
-            console.log('No es posible hacer depósito, saldo rebasa el monto máximo');
+            alert('No es posible hacer depósito, saldo rebasa el monto máximo');
         } else {
             usuarioLogueado.saldo = nuevoSaldo;
-            console.log('Deposito realizado con éxito');
+            alert('Deposito realizado con éxito');
             
             actualizarSesion ()
             regresar();
@@ -114,15 +116,15 @@ function realizarRetiro(){
     let montoRetirado = parseInt(document.getElementById('input-retiro').value);
     console.log(montoRetirado);
     if(montoRetirado <= 1 || isNaN(montoRetirado) ){
-        console.log('Monto incorrecto');
+        alert('Monto incorrecto');
     } else {
         let nuevoSaldo = parseInt(usuarioLogueado.saldo) - parseInt(montoRetirado);
         console.log(nuevoSaldo);
         if(nuevoSaldo < saldoMin) {
-            console.log('No es posible hacer retiro, la cuenta debe tener al menos ', saldoMin);
+            alert('No es posible hacer retiro, la cuenta debe tener al menos ' + saldoMin);
         } else {
             usuarioLogueado.saldo = nuevoSaldo;
-            console.log('Retiro éxitoso');
+            alert('Retiro éxitoso');
             actualizarSesion ()
             regresar();
         }

@@ -11,7 +11,9 @@
 .devf{
     color: #9272ff;
 }
-
+#foto-perfil{
+    max-width: 80px;
+}
 .animacion{
     position: relative;
     height: 60px;
