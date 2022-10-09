@@ -7,10 +7,8 @@ let cuentas = [
 //Reglas de negocio
 const saldoMax = 990;
 const saldoMin = 10;
-
 // Se inicia en null porque saladría un error
 let usuarioLogueado = null;
-
 // Botones generales
 let btnCancelarDeposito = document.getElementById('cancelar-deposito').addEventListener('click', regresar);
 let btnCancelarRetiro = document.getElementById('cancelar-retiro').addEventListener('click', regresar);
@@ -18,10 +16,7 @@ let btnRegresar = document.getElementById('regresar').addEventListener('click', 
 let btnRealizarDeposito =  document.getElementById('aceptar-deposito').addEventListener('click', realizarDeposito);
 let btnRealizarRetiro = document.getElementById('aceptar-retiro').addEventListener('click', realizarRetiro );
 let btnCerrarSesion = document.getElementById('cerrar-sesion').addEventListener('click', cerrarSesion);
-
 console.log(localStorage.getItem('cuentas'));
-
-
 //Verificar el local storage
 if(localStorage.getItem('cuentas') !== null ){
     let cuentasSesion = JSON.parse(localStorage.getItem('cuentas')); // lo convierte a un objeto de JS
@@ -29,14 +24,11 @@ if(localStorage.getItem('cuentas') !== null ){
 } else {
    localStorage.setItem('cuentas', JSON.stringify(cuentas)); // el objeto lo transforma en cadena JSON
 }
-
-
 // Iniciar login
 function login(){
     let inputUsuario = document.getElementById('input-usuario').value;
     let password = document.getElementById('input-password').value;
     console.log(cuentas.length);
-
     // buscar usuarios que coincida el nombre usando filter
     let usuariosEncontrados = cuentas.filter(cuenta => cuenta.nombre == inputUsuario);
     // si encontró usuarios con ese nombre
@@ -71,7 +63,6 @@ function login(){
         alert('No se encontró el usuario ');
     }
 }
-
 //Funciiones ocultar
 function verSaldo(){
     document.getElementById('home').classList.add('d-none');
@@ -82,26 +73,22 @@ function verSaldo(){
     }
     document.getElementById('input-saldo').value = usuarioLogueado.saldo;
 }
-
 function retiro(){
     document.getElementById('home').classList.add('d-none');
     document.getElementById('retiro').classList.remove('d-none');
     document.getElementById('input-retiro').value = '';
 }
-
 function deposito(){
     document.getElementById('home').classList.add('d-none');
     document.getElementById('deposito').classList.remove('d-none');
     document.getElementById('input-deposito').value = '';
 }
-
 function regresar(){
     document.getElementById('deposito').classList.add('d-none')
     document.getElementById('retiro').classList.add('d-none')
     document.getElementById('ver-saldo').classList.add('d-none')
     document.getElementById('home').classList.remove('d-none');
 }
-
 //Funciiones transacciones
 function realizarDeposito(){
     let montoAgregado = parseInt(document.getElementById('input-deposito').value);
@@ -116,13 +103,11 @@ function realizarDeposito(){
         } else {
             usuarioLogueado.saldo = nuevoSaldo;
             alert('Deposito realizado con éxito');
-            
             actualizarSesion ()
             regresar();
         }
     }
 }
-
 function realizarRetiro(){
     let montoRetirado = parseInt(document.getElementById('input-retiro').value);
     console.log(montoRetirado);
@@ -141,12 +126,10 @@ function realizarRetiro(){
         }
     }
 }
-
 function actualizarSesion (){
     localStorage.removeItem('cuentas');
     localStorage.setItem('cuentas', JSON.stringify(cuentas));
 }
-
 function cerrarSesion (){
     usuarioLogueado = null;
     history.go(0);
